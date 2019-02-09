@@ -1,4 +1,4 @@
-export const code = `public class Address
+export const initialCode = `public class Address
 
 {
 
@@ -12,7 +12,7 @@ export const code = `public class Address
  `;
 
 export const methodStyle = [
-  {value: 'signature', viewValue: 'Signature'},
-  {value: 'lambda', viewValue: 'Lambda'},
-  {value: 'controller', viewValue: 'Controller'}
-]
+  { value: "signature", viewValue: "Signature" },
+  { value: "lambda", viewValue: "Lambda" },
+  { value: "controller", viewValue: "Controller" }
+];
