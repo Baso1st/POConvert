@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root"
 })
 export class ConversionBackendService {
-  url = "http://localhost:5000";
+  url = "/server";
   constructor(private http: HttpClient) {}
   conversionToCSharptoJson(value) {
     // const body = JSON.stringify(value);

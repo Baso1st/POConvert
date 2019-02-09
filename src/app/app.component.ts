@@ -164,6 +164,7 @@ export class AppComponent implements OnInit {
         this.isCSharptoJson = true;
         console.log(conversionType);
         this.inputCode = value ? value : "";
+        this.output = "";
         this.service.conversionToCSharptoJson(this.inputCode).subscribe(
           response => {
             this.output = "hello world";
