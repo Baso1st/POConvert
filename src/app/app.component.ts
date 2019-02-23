@@ -14,7 +14,7 @@ import { ConversionBackendService } from "./conversion-backend.service";
 })
 export class AppComponent implements OnInit {
   // initialize the varibale
-  output = "";
+  output;
   isCSharptoJson = false;
   isCsharptoTypescript = true;
   conversionLanguage = CSHARPTOTYPESCRIPT;
@@ -164,13 +164,16 @@ export class AppComponent implements OnInit {
         this.isCSharptoJson = true;
         console.log(conversionType);
         this.inputCode = value ? value : "";
-        this.output = "";
+        if (this.inputCode == undefined || this.inputCode === null) {
+          return;
+        }
+        this.output = "Please wait for sometime";
         this.service.conversionToCSharptoJson(this.inputCode).subscribe(
           response => {
-            this.output = "hello world";
+            this.output = response;
           },
           error => {
-            this.output = "hello world";
+            this.output = "Something went wrong";
             console.log("Something went wrong");
           }
         );

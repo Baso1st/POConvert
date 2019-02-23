@@ -1,14 +1,13 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root"
 })
 export class ConversionBackendService {
-  url = "/server";
+  url = "server";
   constructor(private http: HttpClient) {}
-  conversionToCSharptoJson(value) {
-    // const body = JSON.stringify(value);
-    // return this.http.post(this.url + "/conversion", body);
+  conversionToCSharptoJson(valueString) {
+    return this.http.get("https://localhost:5000/api/values");
   }
 }

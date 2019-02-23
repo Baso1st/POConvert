@@ -16,6 +16,13 @@ namespace POConvertAPI.Controllers
     [HttpGet]
     public ActionResult<IEnumerable<string>> Get()
     {
+      Console.Write(CSharpToJson.CompileClasses(@"
+public class Address
+{
+    public string Street { get; set; }
+    public string City { get; set; }
+    public string State { get; set; }
+  }"));
       return new string[] { "value1", "value2" };
     }
 
