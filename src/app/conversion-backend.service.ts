@@ -1,13 +1,25 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root"
 })
 export class ConversionBackendService {
-  url = "server";
+  // url = "server";
   constructor(private http: HttpClient) {}
+
   conversionToCSharptoJson(valueString) {
-    return this.http.get("https://localhost:5000/api/values");
+    console.log(valueString);
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json; charset=utf-8"
+      })
+    };
+    return this.http.post(
+      "https://localhost:5001/api/values",
+      valueString,
+      httpOptions
+    );
   }
 }

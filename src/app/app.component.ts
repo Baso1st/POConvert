@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
   /**
    * constructor to inject and initialize the dependency
    */
-  constructor(private service: ConversionBackendService) {}
+  constructor(private serviceConversion: ConversionBackendService) {}
 
   /**
    * show the output for the first time
@@ -155,7 +155,7 @@ export class AppComponent implements OnInit {
    * c# to typescript
    * @param value
    */
-  onConversionLanguage(conversionType, value?: string) {
+  async onConversionLanguage(conversionType, value?: string) {
     console.log(value);
     this.conversionLanguage = conversionType;
     switch (conversionType) {
@@ -164,19 +164,28 @@ export class AppComponent implements OnInit {
         this.isCSharptoJson = true;
         console.log(conversionType);
         this.inputCode = value ? value : "";
-        if (this.inputCode == undefined || this.inputCode === null) {
+        if (
+          this.inputCode == undefined ||
+          this.inputCode === null ||
+          this.inputCode == ""
+        ) {
+          this.output = "";
           return;
         }
-        this.output = "Please wait for sometime";
-        this.service.conversionToCSharptoJson(this.inputCode).subscribe(
-          response => {
-            this.output = response;
-          },
-          error => {
-            this.output = "Something went wrong";
-            console.log("Something went wrong");
-          }
-        );
+        this.output = "Your Conversion is going on...";
+
+        await this.serviceConversion
+          .conversionToCSharptoJson(this.inputCode)
+
+          .subscribe(
+            response => {
+              console.log(JSON.stringify(response));
+              this.output = "Dummy Output";
+            },
+            error => {
+              this.output = "Unable to convert the C# to json";
+            }
+          );
         break;
       default:
         this.isCsharptoTypescript = true;
