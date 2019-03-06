@@ -33,17 +33,16 @@ public class Address
       return "value";
     }
 
-    public class myType
+    public class MyType
     {
-      public int Id { get; set; }
       public string Value { get; set; }
     }
 
     // POST api/values
     [HttpPost]
-    public IActionResult Post([FromBody] string value)
+    public IActionResult Post([FromBody] MyType myType)
     {
-      return Ok(CSharpToJson.CompileClasses(value));
+      return Ok(CSharpToJson.CompileClasses(myType.Value));
     }
 
     // PUT api/values/5
