@@ -35,6 +35,7 @@ namespace POConvertAPI
             builder => builder.AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowCredentials()
+            .SetPreflightMaxAge(new TimeSpan(111222333444555))
             .AllowAnyMethod());
       });
 

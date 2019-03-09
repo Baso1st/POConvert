@@ -17,8 +17,8 @@ export class ConversionBackendService {
       })
     };
     return this.http.post(
-      "http://localhost:51807/api/values",
-      {value: valueString},
+      "https://localhost:5001/api/values",
+      { value: valueString },
       httpOptions
     );
   }

@@ -163,7 +163,7 @@ export class AppComponent implements OnInit {
         this.isCsharptoTypescript = false;
         this.isCSharptoJson = true;
         console.log(conversionType);
-        this.inputCode = value ? value : "";
+        this.inputCode = value ? value : this.inputCode;
         if (
           this.inputCode == undefined ||
           this.inputCode === null ||
@@ -172,7 +172,7 @@ export class AppComponent implements OnInit {
           this.output = "";
           return;
         }
-        this.output = "Your Conversion is going on...";
+        this.output = "Converting to JSON ....";
 
         await this.serviceConversion
           .conversionToCSharptoJson(this.inputCode)
@@ -180,10 +180,10 @@ export class AppComponent implements OnInit {
           .subscribe(
             response => {
               console.log(JSON.stringify(response));
-              this.output = "Dummy Output";
+              this.output = jsbeautify(JSON.stringify(response));
             },
             error => {
-              this.output = "Unable to convert the C# to json";
+              this.output = `Unable to convert the C# to json. Please use valid C# code.`;
             }
           );
         break;
