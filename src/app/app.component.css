@@ -11,7 +11,7 @@
 }
 
 .toolbar-select {
-  font-size: 16px;
+  font-size: 14px;
   margin: 0 15px;
 }
 
@@ -31,4 +31,11 @@
 }
 .hider {
   display: none;
+}
+.container {
+  margin-right: 25%;
+}
+
+#control-mat-select {
+  width: 150px !important;
 }
