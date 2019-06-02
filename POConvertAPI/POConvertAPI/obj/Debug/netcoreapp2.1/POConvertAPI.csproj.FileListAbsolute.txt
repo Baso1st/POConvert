@@ -1,0 +1,13 @@
+C:\test\POConvert\POConvertAPI\POConvertAPI\bin\Debug\netcoreapp2.1\POConvertAPI.deps.json
+C:\test\POConvert\POConvertAPI\POConvertAPI\bin\Debug\netcoreapp2.1\POConvertAPI.runtimeconfig.json
+C:\test\POConvert\POConvertAPI\POConvertAPI\bin\Debug\netcoreapp2.1\POConvertAPI.runtimeconfig.dev.json
+C:\test\POConvert\POConvertAPI\POConvertAPI\bin\Debug\netcoreapp2.1\POConvertAPI.dll
+C:\test\POConvert\POConvertAPI\POConvertAPI\bin\Debug\netcoreapp2.1\POConvertAPI.pdb
+C:\test\POConvert\POConvertAPI\POConvertAPI\obj\Debug\netcoreapp2.1\POConvertAPI.csproj.CoreCompileInputs.cache
+C:\test\POConvert\POConvertAPI\POConvertAPI\obj\Debug\netcoreapp2.1\POConvertAPI.RazorAssemblyInfo.cache
+C:\test\POConvert\POConvertAPI\POConvertAPI\obj\Debug\netcoreapp2.1\POConvertAPI.RazorAssemblyInfo.cs
+C:\test\POConvert\POConvertAPI\POConvertAPI\obj\Debug\netcoreapp2.1\POConvertAPI.AssemblyInfoInputs.cache
+C:\test\POConvert\POConvertAPI\POConvertAPI\obj\Debug\netcoreapp2.1\POConvertAPI.AssemblyInfo.cs
+C:\test\POConvert\POConvertAPI\POConvertAPI\obj\Debug\netcoreapp2.1\POConvertAPI.RazorTargetAssemblyInfo.cache
+C:\test\POConvert\POConvertAPI\POConvertAPI\obj\Debug\netcoreapp2.1\POConvertAPI.dll
+C:\test\POConvert\POConvertAPI\POConvertAPI\obj\Debug\netcoreapp2.1\POConvertAPI.pdb
