@@ -15,51 +15,52 @@ using POConvertAPI.Services;
 
 namespace POConvertAPI
 {
-  public class Startup
-  {
-    public Startup(IConfiguration configuration)
+    public class Startup
     {
+        public Startup(IConfiguration configuration)
+        {
 
 
-      Configuration = configuration;
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+              builder => builder.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowCredentials()
+              .SetPreflightMaxAge(new TimeSpan(111222333444555))
+              .AllowAnyMethod());
+            });
+
+            services.AddMvc().AddJsonOptions(options =>
+                options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver()
+            );
+            services.AddTransient<CSharpToJson, CSharpToJson>();
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseHsts();
+            }
+
+            app.UseHttpsRedirection();
+            app.UseCors("CorsPolicy");
+            app.UseMvc();
+        }
     }
-
-    public IConfiguration Configuration { get; }
-
-    // This method gets called by the runtime. Use this method to add services to the container.
-    public void ConfigureServices(IServiceCollection services)
-    {
-      services.AddCors(options =>
-      {
-        options.AddPolicy("CorsPolicy",
-            builder => builder.AllowAnyOrigin()
-            .AllowAnyHeader()
-            .AllowCredentials()
-            .SetPreflightMaxAge(new TimeSpan(111222333444555))
-            .AllowAnyMethod());
-      });
-
-      services.AddMvc().AddJsonOptions(options =>
-          options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver()
-      );
-    }
-
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-    {
-
-      if (env.IsDevelopment())
-      {
-       app.UseDeveloperExceptionPage();
-      }
-      else
-      {
-       app.UseHsts();
-      }
-
-      app.UseHttpsRedirection();
-      app.UseCors("CorsPolicy");
-      app.UseMvc();
-    }
-  }
 }
