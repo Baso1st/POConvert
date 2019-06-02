@@ -27,12 +27,6 @@ namespace POConvertAPI.Controllers
             return Ok("Welcome to POConvert");
         }
 
-        [HttpPost("MyType")]
-        public IActionResult Post([FromBody] MyType myType)
-        {
-            return Ok(cSharpToJson.CompileClasses(myType.Value));
-        }
-
         [HttpPost]
         public IActionResult PostString([FromBody] string cSharp)
         {

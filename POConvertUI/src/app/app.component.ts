@@ -1,16 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { cs2ts, getConfiguration } from "../util/parser/extension";
-import * as jsbeautify from "js-beautify";
-import { MethodType } from "../models/MethodType";
-import { initialCode, methodStyle } from "../models/inital.data";
-import { ConversionLanguage } from "src/models/ConversionLanguage";
-import { CSHARPTOTYPESCRIPT, CSHARPTOJSON } from "src/models/conversion.model";
-import { ConversionBackendService } from "./conversion-backend.service";
+import { Component, OnInit } from '@angular/core';
+import { cs2ts, getConfiguration } from '../util/parser/extension';
+import * as jsbeautify from 'js-beautify';
+import { MethodType } from '../models/MethodType';
+import { initialCode, methodStyle } from '../models/inital.data';
+import { ConversionLanguage } from 'src/models/ConversionLanguage';
+import { CSHARPTOTYPESCRIPT, CSHARPTOJSON } from 'src/models/conversion.model';
+import { ConversionBackendService } from './conversion-backend.service';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   // initialize the varibale
@@ -18,9 +18,9 @@ export class AppComponent implements OnInit {
   isCSharptoJson = false;
   isCsharptoTypescript = true;
   conversionLanguage = CSHARPTOTYPESCRIPT;
-  theme = "vs-dark";
+  theme = 'vs-dark';
   preserveModifier = false;
-  methodType: "signature" | "lambda" | "controller" = "signature";
+  methodType: 'signature' | 'lambda' | 'controller' = 'signature';
   changeToInterface = false;
 
   /**
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   optionInput = {
     theme: this.theme,
     format: true,
-    language: "csharp"
+    language: 'csharp'
   };
 
   /**
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
   optionOutput = {
     theme: this.theme,
     format: true,
-    language: "typescript"
+    language: 'typescript'
   };
 
   // inital configuration for output type
@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
   /**
    * constructor to inject and initialize the dependency
    */
-  constructor(private serviceConversion: ConversionBackendService) {}
+  constructor(private serviceConversion: ConversionBackendService) { }
 
   /**
    * show the output for the first time
@@ -86,16 +86,16 @@ export class AppComponent implements OnInit {
    * only two option: vs-dark and vs-light
    */
   onChangeTheme() {
-    this.theme = this.theme === "vs-dark" ? "vs-light" : "vs-dark";
+    this.theme = this.theme === 'vs-dark' ? 'vs-light' : 'vs-dark';
     this.optionInput = {
       theme: this.theme,
       format: true,
-      language: "csharp"
+      language: 'csharp'
     };
     this.optionOutput = {
       theme: this.theme,
       format: true,
-      language: "typescript"
+      language: 'typescript'
     };
   }
 
@@ -147,7 +147,7 @@ export class AppComponent implements OnInit {
    * we are using jsbeautify npm package to format the code.
    * */
   onFormat() {
-    this.inputCode = jsbeautify.js(this.inputCode, "UTF-8");
+    this.inputCode = jsbeautify.js(this.inputCode, 'UTF-8');
   }
   /**
    * conversion of different language like
@@ -167,12 +167,12 @@ export class AppComponent implements OnInit {
         if (
           this.inputCode == undefined ||
           this.inputCode === null ||
-          this.inputCode == ""
+          this.inputCode == ''
         ) {
-          this.output = "";
+          this.output = '';
           return;
         }
-        this.output = "Converting to JSON ....";
+        this.output = 'Converting to JSON ....';
 
         await this.serviceConversion
           .conversionToCSharptoJson(this.inputCode)
@@ -192,7 +192,7 @@ export class AppComponent implements OnInit {
         this.isCSharptoJson = false;
         this.inputCode = value ? value : initialCode;
         this.output = jsbeautify
-          .js(cs2ts(this.inputCode.trim(), this.configuration), "UTF-8")
+          .js(cs2ts(this.inputCode.trim(), this.configuration), 'UTF-8')
           .trim();
         console.log(conversionType);
     }
