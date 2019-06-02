@@ -12,14 +12,14 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace POConvertAPI.Services
 {
-    public static class CSharpToJson
+    public class CSharpToJson
     {
         /// <summary>
         /// Compiles C# code and creates instances of object types
         /// </summary>
         /// <param name="csharp">C# code text</param>
         /// <returns>Collection of object instances</returns>
-        public static IEnumerable<object> CompileClasses(string csharp)
+        public IEnumerable<object> CompileClasses(string csharp)
         {
             if (string.IsNullOrEmpty(csharp))
             {
@@ -28,13 +28,13 @@ namespace POConvertAPI.Services
 
             SyntaxTree tree = CSharpSyntaxTree.ParseText(csharp);
             CompilationUnitSyntax root = tree.GetCompilationUnitRoot();
-        
+
             // add Using statements to syntax tree
             var system = SyntaxFactory.IdentifierName("System");
             var systemCollections = SyntaxFactory.QualifiedName(system, SyntaxFactory.IdentifierName("Collections"));
             var systemCollectionsGeneric = SyntaxFactory.QualifiedName(systemCollections, SyntaxFactory.IdentifierName("Generic"));
             var systemLinq = SyntaxFactory.QualifiedName(system, SyntaxFactory.IdentifierName("Linq"));
-            var systemText = SyntaxFactory.QualifiedName(system, SyntaxFactory.IdentifierName("Text"));            
+            var systemText = SyntaxFactory.QualifiedName(system, SyntaxFactory.IdentifierName("Text"));
             var systemXml = SyntaxFactory.QualifiedName(system, SyntaxFactory.IdentifierName("Xml"));
 
             var declaredUsings = root.Usings.Select(x => x.Name.ToString()).ToList();
@@ -57,10 +57,10 @@ namespace POConvertAPI.Services
             if (!declaredUsings.Contains("System.Text"))
             {
                 root = root.AddUsings(SyntaxFactory.UsingDirective(systemLinq).NormalizeWhitespace());
-            }            
+            }
             if (!declaredUsings.Contains("System.Xml"))
             {
-               root = root.AddUsings(SyntaxFactory.UsingDirective(systemXml).NormalizeWhitespace());
+                root = root.AddUsings(SyntaxFactory.UsingDirective(systemXml).NormalizeWhitespace());
             }
 
             tree = CSharpSyntaxTree.Create(root);
@@ -68,7 +68,7 @@ namespace POConvertAPI.Services
 
             // generate compiled object with references to commonly used .NET Framework assemblies
             var compilation = CSharpCompilation.Create("CSharp2Json",
-                syntaxTrees: new[] {tree},
+                syntaxTrees: new[] { tree },
                 references: new[]
                 {
                     MetadataReference.CreateFromFile(typeof(object).Assembly.Location),      // mscorelib.dll
@@ -82,8 +82,8 @@ namespace POConvertAPI.Services
             );
 
 
-      // load compiled bits into assembly
-      Assembly assembly;
+            // load compiled bits into assembly
+            Assembly assembly;
             using (var memoryStream = new MemoryStream())
             {
                 var result = compilation.Emit(memoryStream);
