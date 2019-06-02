@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConversionBackendService {
-  // url = "server";
+
+  url = environment.apiURL + 'CSharpToJson';
+
   constructor(private http: HttpClient) { }
 
   conversionToCSharptoJson(valueString) {
@@ -17,7 +20,7 @@ export class ConversionBackendService {
       })
     };
     return this.http.post(
-      'http://localhost:51807/api/CSharpToJson',
+      this.url,
       JSON.stringify(valueString),
       httpOptions
     );

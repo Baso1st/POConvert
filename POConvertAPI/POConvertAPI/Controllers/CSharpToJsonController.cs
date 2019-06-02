@@ -16,10 +16,6 @@ namespace POConvertAPI.Controllers
         {
             this.cSharpToJson = cSharpToJson;
         }
-        public class MyType
-        {
-            public string Value { get; set; }
-        }
 
         [HttpGet]
         public IActionResult Get()
